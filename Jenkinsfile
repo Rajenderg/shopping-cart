@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "ghcr.io/rajenderg/shopping-cart"
         DOCKER_CREDENTIALS = credentials('ghcr-credentials')
+        PATH = "/usr/local/bin:/opt/homebrew/bin:${env.PATH}"
     }
 
     stages {
@@ -37,7 +38,7 @@ pipeline {
 
     post {
         always {
-            junit '**/build/test-results/test/*.xml'
+            junit allowEmptyResults: true, testResults: '**/build/test-results/test/*.xml'
         }
     }
 }
