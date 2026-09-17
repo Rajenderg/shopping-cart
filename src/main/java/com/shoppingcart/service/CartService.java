@@ -46,7 +46,6 @@ public class CartService {
 
     @Transactional
     public void deleteItem(Long id) {
-        System.out.println("testing1");
         CartItem existing = getItem(id);
         cartItemRepository.delete(existing);
     }
